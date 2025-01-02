@@ -1,0 +1,108 @@
+
+ZMK_BEHAVIOR(u_left, tap_dance,
+    tapping-term-ms = <150>;
+    bindings = <&kp LA(LEFT)>,<&kp LG(LEFT)>;
+)
+
+ZMK_BEHAVIOR(u_right, tap_dance,
+    tapping-term-ms = <150>;
+    bindings = <&kp LA(RIGHT)>,<&kp LG(RIGHT)>;
+)
+
+ZMK_HOLD_TAP(copy_swap,
+    flavor = "hold-preferred";
+    tapping-term-ms = <250>;
+    bindings = <&kp>, <&kp>;
+)
+
+ZMK_BEHAVIOR(swapper, tri_state,
+    bindings = <&kt LCMD>, <&kp TAB>, <&kt LCMD>;
+)
+
+ZMK_BEHAVIOR(rev_swapper, tri_state,
+    bindings = <&kt LS(LCMD)>, <&kp TAB>, <&kt LS(LCMD)>;
+)
+
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
+};
+
+ZMK_BEHAVIOR(as, hold_tap,
+    flavor = "tap-preferred";
+    tapping-term-ms = <250>;
+    bindings = <&kp>, <&kp>;
+)
+
+ZMK_BEHAVIOR(asn, hold_tap,
+    flavor = "tap-preferred";
+    tapping-term-ms = <250>;
+    bindings = <&kp>, <&kp>;
+)
+
+ZMK_BEHAVIOR(u_hml, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <175>;                // repeat on tap-into-hold
+    require-prior-idle-ms = <150>;         // requires PR #1387
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <KEYS_R THUMBS>;
+    hold-trigger-on-release;             // delay positional check until key-release
+)
+
+/* right-hand HRMs */
+ZMK_BEHAVIOR(u_hmr, hold_tap,
+    flavor = "balanced";
+    tapping-term-ms = <280>;
+    quick-tap-ms = <175>;                // repeat on tap-into-hold
+    require-prior-idle-ms = <150>;         // requires PR #1387
+    bindings = <&kp>, <&kp>;
+    hold-trigger-key-positions = <KEYS_L THUMBS>;
+    hold-trigger-on-release;             // delay positional check until key-release
+)
+
+
+ZMK_BEHAVIOR(u_back_pipe, tap_dance,
+    tapping-term-ms = <275>;
+    bindings = <&kp LG(LBKT)>, <&kp LG(PIPE)>;
+)
+
+ZMK_BEHAVIOR(u_fwd_pipe, tap_dance,
+    tapping-term-ms = <275>;
+    bindings = <&kp LG(RBKT)>, <&kp LG(PIPE)>;
+)
+
+
+ZMK_BEHAVIOR(space_caps_word, tap_dance,
+    tapping-term-ms = <280>;
+    bindings = <&kp SPACE>, <&caps_word>;
+)
+
+ZMK_BEHAVIOR(parens, tap_dance,
+    tapping-term-ms = <250>;
+    bindings = <&kp LPAR>, <&kp RPAR>;
+)
+
+
+ZMK_BEHAVIOR(bksp_p, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp P>, <&kp BSPC>;
+)
+
+ZMK_BEHAVIOR(esc_q, tap_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp Q>, <&kp ESC>;
+)
+
+ZMK_HOLD_TAP(esc_switch_copy,
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&kp>, <&esc_switch_copy_dance>;
+)
+
+ZMK_TAP_DANCE(esc_switch_copy_dance,
+    tapping-term-ms = <200>;
+    bindings = <&kp ESC>, <&kp LA(LS(C))>;
+)
+
