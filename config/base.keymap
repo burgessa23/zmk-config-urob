@@ -69,10 +69,10 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 /* Combos, leader key sequences, mouse emulation */
 
-#include "combos.dtsi"  // must be sources after HRM-combo hack
-#include "extra_behaviours.dtsi"
-#include "leader.dtsi"
 #include "mouse.dtsi"
+#include "extra_behaviours.dtsi"
+#include "combos.dtsi"  // must be sources after HRM-combo hack
+#include "leader.dtsi"
 
 
 
@@ -122,13 +122,13 @@ ZMK_MOD_MORPH(smart_shft,
 #define SMART_NUM &smart_num NUM 0
 ZMK_HOLD_TAP(smart_num,
     flavor = "balanced";
-    tapping-term-ms = <200>;
+    tapping-term-ms = <280>;
     quick-tap-ms = <QUICK_TAP_MS>;
     bindings = <&mo>, <&num_dance>;
 )
 ZMK_TAP_DANCE(num_dance,
-    tapping-term-ms = <200>;
-    bindings = <&num_word NUM>, <&sl NUM>;  // reverse this for sticky-num on single tap
+    tapping-term-ms = <250>;
+    bindings = <&kp RET>, <&num_word NUM>, <&sl NUM>;  // reverse this for sticky-num on single tap
 )
 
 // smart-mouse, requires PR #1366
@@ -226,17 +226,18 @@ ZMK_TAP_DANCE(gui_ray_switch_dance,
 
 // misc aliases
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
-#define DSK_PREV    &hmr LCTRL LG(LC(LEFT))  // previous desktop
-#define DSK_NEXT    &hmr LALT LG(LC(RIGHT))  // next     desktop
-#define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
-#define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
-#define DSK_MGR     &kp LA(GRAVE)            // desktop manager
-#define VOL_DOWN    &hmr RSHFT C_VOL_DN
+#define DSK_PREV    &kp LS(LA(LG(LC(TAB))))  // previous desktop
+#define DSK_NEXT    &hmr LGUI LA(LG(LC(TAB)))  // next     desktop
+// #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
+// #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
+// #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
+// #define VOL_DOWN    &hmr RSHFT C_VOL_DN
 #define AS(keycode) &as LS(keycode) keycode
 #define GRID        &kp LC(LG(LA(G)))
 #define HINT        &kp LC(LG(LA(H)))
 #define ESC_SWITCH_COPY &esc_switch_copy RG(LC(LALT)) 0
 #define GUI_RAY_SWITCH &gui_ray_switch LGUI 0
+#define LDR_MOUSE_TAB &ldr_mouse_tab MOUSE 0
 
 /* map Totem's extra keys */
 #define X_LB ESC_SWITCH_COPY
@@ -259,7 +260,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
    X_LB     AS(Z)         AS(X)         AS(C)         AS(V)         AS(B)            X_MB     AS(N)        AS(M)         &comma_morph  &dot_morph    AS(SLASH)        X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-   X_LH                                               &lt_spc NAV 0 &lt MOUSE TAB    X_MH     &lt SYM BSPC  &lt NUM RET                                               X_RH
+   X_LH                                               &lt_spc NAV 0 LDR_MOUSE_TAB    X_MH     &lt SYM BSPC  SMART_NUM                                                X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
@@ -267,7 +268,7 @@ ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT    &kp LS(LG(Z))   &kp LG(X)     &kp LG(C)     &kp LG(V)     &kp LG(Z)      X_MT     &kp PG_DN      &kp HOME      &kp UP        &kp END       &kp PG_UP      X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM    &kp LGUI        &kp LALT      &kp LCTRL     &kp LSHFT     ___            X_MM     &kp LC(UP)     &kp LEFT      &kp DOWN      &kp RIGHT    &kp LC(DOWN)    X_RM
+    X_LM    &kp LGUI        &kp LALT      &kp LCTRL     &kp LSHFT     ___            X_MM     DSK_PREV       &kp LEFT      &kp DOWN      &kp RIGHT     DSK_NEXT       X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB    &sk LGUI        &sk LALT      &sk LCTRL     &sk LSHFT     ___            X_MB     &kp LG(LBKT)   &u_left     &kp LS(LG(J))   &u_right     &kp LG(RBKT)    X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
@@ -301,7 +302,7 @@ ZMK_LAYER(num,
 
 ZMK_LAYER(sys,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT                               _BT_SEL_KEYS_                                 X_MT     ___           ___           ___           ___           ___             X_RT
+    X_LT                                _BT_SEL_KEYS_                                X_MT     ___           ___           ___           ___           ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM    ___           ___           ___           ___           &bootloader      X_MM     &bootloader   ___           ___           ___           ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
