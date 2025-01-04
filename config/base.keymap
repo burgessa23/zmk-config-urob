@@ -122,12 +122,12 @@ ZMK_MOD_MORPH(smart_shft,
 #define SMART_NUM &smart_num NUM 0
 ZMK_HOLD_TAP(smart_num,
     flavor = "balanced";
-    tapping-term-ms = <280>;
+    tapping-term-ms = <250>;
     quick-tap-ms = <QUICK_TAP_MS>;
     bindings = <&mo>, <&num_dance>;
 )
 ZMK_TAP_DANCE(num_dance,
-    tapping-term-ms = <250>;
+    tapping-term-ms = <200>;
     bindings = <&kp RET>, <&num_word NUM>, <&sl NUM>;  // reverse this for sticky-num on single tap
 )
 
@@ -217,7 +217,7 @@ ZMK_HOLD_TAP(gui_ray_switch,
 
 ZMK_TAP_DANCE(gui_ray_switch_dance,
     tapping-term-ms = <200>;
-    bindings = <&kp LC(SPACE)>, <&kp RG(LC(LA(TAB)))>;
+    bindings = <&kp LC(SPACE)>, <&kp RG(LC(LA(A)))>;
 )
  
 
@@ -314,9 +314,9 @@ ZMK_LAYER(sys,
 
 ZMK_LAYER(mouse,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬───────────────┬───────────────┬───────────────┬───────────────╮ ╭──────╮
-    X_LT    &kp LC(F12)     &kp F7       &kp F8        &kp F9         &kp F23        X_MT     ___          &msc MOVE_LEFT    &mmv MOVE_UP  &msc MOVE_RIGHT   &msc MOVE_UP     X_RT
+    X_LT    &kp LC(F12)     &kp F7       &kp F8        &kp F9         &kp F23        X_MT     ___          &msc MOVE_LEFT    &mmv MOVE_UP  &msc MOVE_RIGHT  &msc MOVE_DOWN    X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼───────────────┼───────────────┼───────────────┼───────────────┤ ├──────┤
-    X_LM    &mt LGUI F11   &mt LALT F4   &mt LCTRL F5  &mt LSHFT F6     GRID         X_MM       HINT       &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc MOVE_DOWN    X_RM
+    X_LM    &mt LGUI F11   &mt LALT F4   &mt LCTRL F5  &mt LSHFT F6     GRID         X_MM       HINT       &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc MOVE_UP      X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼───────────────┼───────────────┼───────────────┼───────────────┤ ├──────┤
     X_LB    &kp F10         &kp F1       &kp F2         &kp F3        ___            X_MB       &kp LG(Z)     &kp LG(V)        &kp LG(C)       &kp LG(X)    &kp LS(LG(Z))     X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼───────────────┼───────────────┴───────────────────────────────╯ ├──────┤
