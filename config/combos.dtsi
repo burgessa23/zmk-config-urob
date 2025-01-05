@@ -56,25 +56,7 @@ ZMK_COMBO(cmb_cmd_sht_main,  &kp LS(LGUI), 34 35, DEF, COMBO_IDLE_FAST)
 
 // ZMK_COMBO(tab,   &hml LS(LALT)TAB, LM3 LM2, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // ZMK_COMBO(ldrsh, &leader_sft,  LM3 LM2 LM1, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LC(LALT)), KEYS_R)
-ZMK_COMBO(soff,  &soft_off, LB5 RB5, SYS, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-ZMK_COMBO(ldr,   &leader,      LM2 LM1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST, LS(LCTRL),    KEYS_R)
+ZMK_COMBO(soff,  &soft_off, LB5 RB5, SYS,         COMBO_TERM_FAST, COMBO_IDLE_FAST)
+ZMK_COMBO(ldr,   &leader,   LH0 LH1, DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 // ZMK_COMBO(mouse, &smart_mouse, LT3 LT1,     DEF NAV NUM, COMBO_TERM_FAST, COMBO_IDLE_FAST)
-
-
-
-// Alt+Tab swapper, requires PR #1366
-
-ZMK_HOLD_TAP(copy_swap,
-    flavor = "hold-preferred";
-    tapping-term-ms = <250>;
-    bindings = <&kp>, <&kp>;
-)
-
-ZMK_BEHAVIOR(swapper, tri_state,
-    bindings = <&kt LCMD>, <&kp TAB>, <&kt LCMD>;
-)
-
-ZMK_BEHAVIOR(rev_swapper, tri_state,
-    bindings = <&kt LS(LCMD)>, <&kp TAB>, <&kt LS(LCMD)>;
-)
 

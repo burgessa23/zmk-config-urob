@@ -118,6 +118,11 @@ ZMK_MOD_MORPH(smart_shft,
     /delete-property/ ignore-modifiers;
 };
 
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
+};
+
 // tap: num-word | double-tap: sticky num-layer | hold: num-layer
 #define SMART_NUM &smart_num NUM 0
 ZMK_HOLD_TAP(smart_num,
@@ -228,10 +233,6 @@ ZMK_TAP_DANCE(gui_ray_switch_dance,
 #define CANCEL      &kp K_CANCEL             // cancel caps-word, num-word and smart-mouse
 #define DSK_PREV    &kp LS(LA(LG(LC(TAB))))  // previous desktop
 #define DSK_NEXT    &hmr LGUI LA(LG(LC(TAB)))  // next     desktop
-// #define PIN_WIN     &kp LG(LC(LS(Q)))        // pin window across desktops
-// #define PIN_APP     &kp LG(LC(LS(A)))        // pin application across desktops
-// #define DSK_MGR     &kp LA(GRAVE)            // desktop manager
-// #define VOL_DOWN    &hmr RSHFT C_VOL_DN
 #define AS(keycode) &as LS(keycode) keycode
 #define GRID        &kp LC(LG(LA(G)))
 #define HINT        &kp LC(LG(LA(H)))
@@ -260,7 +261,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
    X_LB     AS(Z)         AS(X)         AS(C)         AS(V)         AS(B)            X_MB     AS(N)        AS(M)         &comma_morph  &dot_morph    AS(SLASH)        X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-   X_LH                                               &lt_spc NAV 0 LDR_MOUSE_TAB    X_MH     &lt SYM BSPC  SMART_NUM                                                X_RH
+   X_LH                                               &lt_spc NAV 0 LDR_MOUSE_TAB    X_MH     &lt SYM BSPC  SMART_NUM                                                 X_RH
 //╰──────╯                                           ╰─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────╯                                           ╰──────╯
 )
 
