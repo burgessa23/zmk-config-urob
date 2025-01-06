@@ -21,43 +21,38 @@ ZMK_BEHAVIOR(as, hold_tap,
 
 ZMK_HOLD_TAP(esc_switch_copy,
     flavor = "balanced";
-    tapping-term-ms = <280>;
+    tapping-term-ms = <250>;
     quick-tap-ms = <QUICK_TAP_MS>;
     bindings = <&kp>, <&esc_switch_copy_dance>;
 )
 
 ZMK_TAP_DANCE(esc_switch_copy_dance,
-    tapping-term-ms = <250>;
+    tapping-term-ms = <225>;
     bindings = <&kp ESC>, <&kp LA(LS(C))>;
 )
 
-ZMK_HOLD_TAP(ldr_mouse_tab,
+ZMK_HOLD_TAP(ldr_fn_tab,
     flavor = "balanced";
     tapping-term-ms = <280>;
     quick-tap-ms = <QUICK_TAP_MS>;
-    bindings = <&mo>, <&ldr_mouse_tab_tap>;
+    bindings = <&mo>, <&ldr_fn_tab_tap>;
 )
 
-ZMK_TAP_DANCE(ldr_mouse_tab_tap,
+ZMK_TAP_DANCE(ldr_fn_tab_tap,
     tapping-term-ms = <250>;
     bindings = <&kp TAB>, <&leader>;
 )
 
-// supporting macros
-ZMK_BEHAVIOR(aero_jr_macro, macro,
-    wait-ms = <100>;
-    bindings = <&kp LS(LA(FSLH)) &kp LS(LA(RIGHT))>;
+ZMK_HOLD_TAP(q_excl_slsh,
+    flavor = "balanced";
+    tapping-term-ms = <250>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+    bindings = <&kp>, <&q_excl_slsh_dance>;
 )
 
-ZMK_BEHAVIOR(aero_jd_macro, macro,
-    wait-ms = <100>;
-    bindings = <&kp LS(LA(FSLH)) &kp LS(LA(DOWN))>;
+ZMK_TAP_DANCE(q_excl_slsh_dance,
+    tapping-term-ms = <225>;
+    bindings = <&kp SLASH>, <&kp EXCL>;
 )
-
-ZMK_BEHAVIOR(aero_flt_macro, macro,
-    wait-ms = <100>;
-    bindings = <&kp LS(LA(SEMI)) &kp F>;
-)
-
 
 
