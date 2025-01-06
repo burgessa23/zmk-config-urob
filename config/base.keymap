@@ -61,6 +61,7 @@
         hold-trigger-on-release; \
     )
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
+MAKE_HRM(s_hmr, &hmr_sshft, &kp, KEYS_L KEYS_R THUMBS)  // smart-shift HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 // HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
@@ -94,10 +95,10 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 
 #define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
 #define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
-#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
-#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
-#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
-#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
+#define NAV_UP    &mt LG(HOME) UP      // tap: up    | long-tap: beginning of document
+#define NAV_DOWN  &mt LG(END)  DOWN    // tap: down  | long-tap: end       of document
+#define NAV_BSPC  &mt LG(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
+#define NAV_DEL   &mt LG(DEL)  DEL     // tap: del   | long-tap: delete word forward
 
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 #define MASK_MODS(NAME, MODS, BINDING) \
@@ -117,8 +118,8 @@ ZMK_MOD_MORPH(smart_shft,
 )
 
 ZMK_MOD_MORPH(hmr_sshft,
-    bindings = <&kp LSHFT>, <&caps_word>;
-    mods = <(MOD_RSFT)>;
+    bindings = <&kp RSHFT>, <&caps_word>;
+    mods = <(MOD_LSFT)>;
 )
 
 &caps_word {  // mods deactivate caps-word, requires PR #1451
@@ -228,7 +229,7 @@ ZMK_TAP_DANCE(gui_ray_switch_dance,
 #define LDR_FN_TAB      &ldr_fn_tab FN 0
 #define Q_EXCL_SLSH     &q_excl_slsh QMARK 0
 #define SYM_DEL         &lt SYM BSPC
-#define LSSHFT          &hmr_sshft
+#define HMR_J_SSHFT     &s_hmr 0 J
 
 /* Keymap */
 
@@ -236,13 +237,13 @@ ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // NAV + NUM --> SYS
 
 ZMK_BASE_LAYER(base,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-   &q_esc        AS(W)         AS(E)         AS(R)         AS(T)        ,   AS(Y)        AS(U)         AS(I)         AS(O)         AS(P)        ,
+   &q_esc        AS(W)         AS(E)         AS(R)         AS(T)        ,   AS(Y)         AS(U)         AS(I)         AS(O)         AS(P)       ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   &hml LGUI A   &hml LALT S   &hml LCTRL D  &hml LSSHFT F AS(G)        ,   AS(H)        &hmr RSHFT J  &hmr LCTRL K  &hmr LALT L   &hmr LGUI SQT,
+   &hml LGUI A   &hml LALT S   &hml LCTRL D  &hml LSHFT F  AS(G)        ,   AS(H)         HMR_J_SSHFT   &hmr LCTRL K  &hmr LALT L  &hmr LGUI SQT,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   AS(Z)         AS(X)         AS(C)         AS(V)         AS(B)        ,   AS(N)        AS(M)         &comma_morph  &dot_morph    Q_EXCL_SLSH  ,
+   AS(Z)         AS(X)         AS(C)         AS(V)         AS(B)        ,   AS(N)         AS(M)        &comma_morph  &dot_morph    Q_EXCL_SLSH  ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
-                                             &lt_spc NAV 0 LDR_FN_TAB   ,   SYM_DEL      SMART_NUM                                              
+                                             &lt_spc NAV 0 LDR_FN_TAB   ,   SYM_DEL       SMART_NUM                                              
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯                                          
 )
 
