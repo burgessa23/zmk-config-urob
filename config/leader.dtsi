@@ -16,12 +16,13 @@
 
 
 // aerospace leader key sequences
-ZMK_LEADER_SEQUENCE(aero_jr,      &kp LA(LS(LG(L))),       J R )
-ZMK_LEADER_SEQUENCE(aero_jd,      &kp LA(LS(LG(K))),       J D )
-ZMK_LEADER_SEQUENCE(aero_ju,      &kp LA(LS(LG(I))),       J U )
-ZMK_LEADER_SEQUENCE(aero_jl,      &kp LA(LS(LG(J))),       J J )
-ZMK_LEADER_SEQUENCE(aero_tile,    &kp LA(FSLH),     T )
-ZMK_LEADER_SEQUENCE(aero_accd,    &kp LA(COMMA),    A )
-ZMK_LEADER_SEQUENCE(aero_flt,     &kp LA(DOT),      F )
+ZMK_LEADER_SEQUENCE(aero_jr,      &kp LA(LS(LG(L))),    J R )
+ZMK_LEADER_SEQUENCE(aero_jd,      &kp LA(LS(LG(K))),    J D )
+ZMK_LEADER_SEQUENCE(aero_ju,      &kp LA(LS(LG(I))),    J U )
+ZMK_LEADER_SEQUENCE(aero_jl,      &kp LA(LS(LG(J))),    J J )
+ZMK_LEADER_SEQUENCE(aero_tile,    &kp LA(FSLH),           T )
+ZMK_LEADER_SEQUENCE(aero_accd,    &kp LA(COMMA),          A )
+ZMK_LEADER_SEQUENCE(aero_flt,     &kp LA(DOT),            F )
+ZMK_LEADER_SEQUENCE(aero_move,    &kp LA(LS(TAB)),        M )
 
 

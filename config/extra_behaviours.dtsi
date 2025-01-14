@@ -28,7 +28,7 @@ ZMK_HOLD_TAP(esc_switch_copy,
 
 ZMK_TAP_DANCE(esc_switch_copy_dance,
     tapping-term-ms = <225>;
-    bindings = <&kp ESC>, <&kp LA(LS(C))>;
+    bindings = <&kp ESC>, <&kp LA(LG(LC(Z)))>;
 )
 
 ZMK_HOLD_TAP(ldr_fn_tab,
