@@ -152,7 +152,7 @@ ZMK_TRI_STATE(
 #define SMART_NUM &smart_num NUM 0
 ZMK_HOLD_TAP(smart_num,
     flavor = "balanced";
-    tapping-term-ms = <250>;
+    tapping-term-ms = <200>;
     quick-tap-ms = <QUICK_TAP_MS>;
     bindings = <&mo>, <&num_morph>;
 )
@@ -198,33 +198,15 @@ ZMK_TAP_DANCE(q_esc,
     bindings = <&kp Q>, <&kp ESC>;
 )
 
-// hold: autoshift R | tap: R | double-tap: browser refresh
-ZMK_TAP_DANCE(r_rld,
-    tapping-term-ms = <200>;
-    bindings = <&as LS(R) R>, <&kp LG(R)>;
+// tap: LBRC | double-tap: RBRC
+ZMK_TAP_DANCE(braces,
+    tapping-term-ms = <250>;
+    bindings = <&kp LBRC>, <&kp RBRC>;
 )
 
-// hold: autoshift T | tap: T | double-tap: browser new tab
-ZMK_TAP_DANCE(t_ntab,
-    tapping-term-ms = <200>;
-    bindings = <&as LS(T) T>, <&kp LG(T)>;
-)
-
-// hold: autoshift C | tap: C | double-tap: copy
-ZMK_TAP_DANCE(c_cpy,
-    tapping-term-ms = <200>;
-    bindings = <&as LS(C) C>, <&kp LG(C)>;
-)
-
-// hold: autoshift V | tap: V | double-tap: paste
-ZMK_TAP_DANCE(v_pst,
-    tapping-term-ms = <200>;
-    bindings = <&as LS(V) V>, <&kp LG(V)>;
-)
-
-// hold: autoshift R | tap: R | double-tap: browser refresh
+// tap: Paste | double-tap: paste buffer
 ZMK_TAP_DANCE(paste_buff,
-    tapping-term-ms = <200>;
+    tapping-term-ms = <280>;
     bindings = <&kp LG(V)>, <&kp LA(LS(C))>;
 )
 
@@ -251,7 +233,7 @@ SIMPLE_MORPH(ray_morph, SFT, &kp LC(SPACE), &kp LA(LS(C)))
 #define DSK_NEXT        &hmr LGUI LA(LG(LC(TAB)))  // next     desktop
 #define AS(keycode)     &as LS(keycode) keycode
 #define GRID            &kp LC(LG(LA(G)))
-#define HINT            &kp LC(LG(LA(H)))
+#define HINT            &kp LG(LA(H))
 #define ESC_SWITCH_COPY &esc_switch_copy RG(LC(LALT)) 0
 #define GUI_RAY_SWITCH  &gui_ray_switch LGUI 0
 #define LDR_FN_TAB      &ldr_fn_tab FN 0
@@ -261,7 +243,7 @@ SIMPLE_MORPH(ray_morph, SFT, &kp LC(SPACE), &kp LA(LS(C)))
 
 /* Keymap */
 
-ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // NAV + NUM --> SYS
+ZMK_CONDITIONAL_LAYER(Sys, NAV NUM, SYS)  // NAV + NUM --> SYS
 
 
 #ifndef ZMK_BASE_LAYER
@@ -275,7 +257,7 @@ ZMK_BASE_LAYER(Base,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
    &hml LGUI A   &hml LALT S   &hml LCTRL D  &hml LSHFT F  AS(G)        ,   AS(H)         HMR_J_SSHFT   &hmr LCTRL K  &hmr LALT L  &hmr LGUI SQT,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   AS(Z)         AS(X)         &c_cpy        &v_pst        AS(B)        ,   AS(N)         AS(M)        &comma_morph  &dot_morph    Q_EXCL_SLSH  ,
+   AS(Z)         AS(X)         AS(C)         AS(V)         AS(B)        ,   AS(N)         AS(M)        &comma_morph  &dot_morph    Q_EXCL_SLSH  ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                              &lt_spc NAV 0 LDR_FN_TAB   ,   SYM_DEL       SMART_NUM                                              
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯                                          
@@ -299,7 +281,7 @@ ZMK_BASE_LAYER(Sym,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
       &kp LGUI    &kp DLLR       &kp PRCNT    &kp CARET      &kp PLUS   ,    &kp LC(UP)     &kp LEFT      &kp DOWN      &kp RIGHT  &kp LC(DOWN) ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-      &kp LBKT     &qexcl        &kp AT       &kp HASH       &kp RBKT   ,  &kp LS(LG(Z))    &u_left       &kp LC(R)     &u_right     &kp LG(Z)  ,
+      &kp LBKT     &qexcl        &kp AT       &kp HASH       &kp RBKT   ,  &kp LS(LG(Z))    &u_left       &braces       &u_right     &kp LG(Z)  ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               &kp LPAR       &kp RPAR   ,    ___           &swapper                                              
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯                                          
@@ -319,11 +301,11 @@ ZMK_BASE_LAYER(Num,
 
 ZMK_BASE_LAYER(Fn,
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-   &kp F12       &kp F7        &kp F8        &kp F9         ___         ,   &kp F15       &kp C_PREV   &kp C_VOL_UP    &kp C_NEXT   ___         ,
+   &kp F12       &kp F7        &kp F8        &kp F9         ___         ,   &kp F15       &kp C_PREV   &kp C_VOL_UP    &kp C_NEXT   GRID        ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-   &hml LGUI F11 &hml LALT F4  &hml LCTRL F5 &hml LSHFT F6  ___         ,   &kp F14        DSK_PREV    &kp C_VOL_DN    DSK_NEXT     ___         ,
+   &hml LGUI F11 &hml LALT F4  &hml LCTRL F5 &hml LSHFT F6  ___         ,   &kp F14        DSK_PREV    &kp C_VOL_DN    DSK_NEXT     HINT        ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp F10       &kp F1       &kp F2        &kp F3         ___         ,   &kp F13       ___           ___           ___           ___         ,
+    &kp F10       &kp F1       &kp F2        &kp F3         ___         ,   &kp F13      &kp LG(LS(O)) &kp LG(LS(M))  ___           ___         ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                                    ___      &kp TAB     ,   &kp C_MUTE    &kp C_PP
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯
@@ -347,7 +329,7 @@ ZMK_BASE_LAYER(Mouse,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp LGUI      &kp LALT      &kp LCTRL     &kp LSHFT     ___         ,   U_WH_D           U_MS_L      U_MS_D         U_MS_R       U_WH_D     ,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    ___           ___           ___           ___           ___         ,   GRID           &mkp LCLK     &mkp MCLK      &mkp RCLK    HINT       ,
+    ___           ___           ___           ___           ___         ,   ___            &mkp LCLK     &mkp MCLK      &mkp RCLK    ___        ,
 //╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯
                                               ___           ___         ,   &mkp LCLK      &mkp RCLK
 //                                          ╰─────────────┴─────────────╯ ╰─────────────┴─────────────╯

@@ -32,6 +32,9 @@ parse_config:
     "&kp LC(INS)": Copy
     "&kp LC(X)": Cut
     "&kp LS(INS)": Paste
+    "&braces": { "t": "{ }" }
+    "&kp LG(LS(M))": Teams Mic
+    "&kp LG(LS(O))": Teams Cam
 
     "&kp LS(LA(LG(LC(TAB))))": Prev Desk
     "&hmr LGUI LA(LG(LC(TAB)))": Next Desk

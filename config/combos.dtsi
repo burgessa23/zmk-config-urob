@@ -45,8 +45,9 @@ ZMK_COMBO(rbrc,  &kp RBRC,     LT2 LT1,     DEF,          COMBO_TERM_SLOW,      
 ZMK_COMBO(back,  &kp LG(LBKT), LB5 LM4,     DEF,          COMBO_TERM_SLOW,      COMBO_IDLE_FAST)
 ZMK_COMBO(fwd,   &kp LG(RBKT), RB5 RM4,     DEF,          COMBO_TERM_SLOW,      COMBO_IDLE_FAST)
 
-ZMK_COMBO(lslg,  &kp LS(LGUI), LH0 RH0,     DEF,          COMBO_TERM_FAST,      COMBO_IDLE_FAST)
-ZMK_COMBO(soff,  &soft_off,    LB5 RB5,     SYS,          COMBO_TERM_FAST,      COMBO_IDLE_FAST)
-ZMK_COMBO(ldr,   &leader,      LM2 LM1,     DEF NAV NUM,  COMBO_TERM_FAST,      COMBO_IDLE_FAST, LS(LCTRL),    KEYS_R)
-ZMK_COMBO(mouse, &smart_mouse, LT3 LT1,     DEF NAV NUM,  COMBO_TERM_FAST,      COMBO_IDLE_FAST)
+ZMK_COMBO(lslg,  &kp LS(LGUI), LH0 RH0,     DEF,          COMBO_TERM_SLOW,      COMBO_IDLE_FAST)
+ZMK_COMBO(soff,  &soft_off,    LB5 RB5,     SYS,          COMBO_TERM_VERY_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(ldr,   &leader,      LM2 LM1,     DEF NAV NUM,  COMBO_TERM_SLOW,      COMBO_IDLE_FAST, LS(LCTRL),    KEYS_R)
+ZMK_COMBO(mouse, &smart_mouse, LH1 LH0,     DEF NAV NUM,  COMBO_TERM_SLOW,      COMBO_IDLE_FAST)
+ZMK_COMBO(mause, &smart_mouse, LT3 LT1,     DEF NAV NUM,  COMBO_TERM_FAST,      COMBO_IDLE_FAST)
 
